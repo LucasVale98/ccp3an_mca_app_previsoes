@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8"/>
+		<meta name="viewport" content="width=device-width" />
+		<title>Previsao de Tempo</title>
+		<link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"
+		rel="stylesheet"/>
+		<link th:href="@{/webjars/bootstrap/css/bootstrap-theme.min.css}"
+		rel="stylesheet"/>
+	</head>
+	<body>		
+		<div class="panel panel-default" style="margin: 10px">			
+			<div class="panel-heading">
+				<h1 class="panel-title">Previsao de Tempo</h1>
+			</div>
+			<div class="panel-body">
+				<form class="form-inline" method="post" th:object="${tempo}" th:action="@{/temperatura}" style="margin: 20px 0">
+					<div class="form-group">
+					<input type="text" class="form-control" placeholder="Dia" th:field="*{dia}"/>
+					<input type="text" class="form-control" placeholder="Temperatura Maxima" th:field="*{temp_maxima}"/>
+					<input type="text" class="form-control" placeholder="Temperatura Minima" th:field="*{temp_minima}"/>
+					<input type="text" class="form-control" placeholder="Umidade relativa do Ar" th:field="*{umidade}"/>
+					<input type="text" class="form-control" placeholder="Descicao" th:field="*{descricao}"/>
+					<button type="submit" class="btn btn-primary">Adicionar</button>
+					</div>
+				</form>
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Dia</th>
+							<th>Temperatura Maxima</th>
+							<th>Temperatura Minima</th>
+							<th>Umidade relativa do Ar</th>
+							<th>Descricao</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="tempo: ${temperatura}">
+							<td th:text="${tempo.dia}"></td>
+							<td th:text="${tempo.temp_maxima}"></td>
+							<td th:text="${tempo.temp_minima}"></td>
+							<td th:text="${tempo.umidade}"></td>
+							<td th:text="${tempo.descricao}"></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</body>
+</html>
